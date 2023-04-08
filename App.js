@@ -1,10 +1,10 @@
-import * as React from 'react';
-import MainContainer from './navigation/MainContainer';
+import React from 'react';
+import AppNavigator from './src/navigation/AppNavigator';
 
-function App() {
+const App = () => {
   return (
-    <MainContainer/>
+    <AppNavigator />
   );
-}
+};
 
 export default App;
