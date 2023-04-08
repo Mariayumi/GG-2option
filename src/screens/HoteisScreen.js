@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
 const data = [
   { id: 1, nome: 'Hotel A', cidade: 'São Paulo', estado: 'SP' },
@@ -9,7 +9,10 @@ const data = [
   { id: 5, nome: 'Hotel E', cidade: 'Belo Horizonte', estado: 'MG' },
 ];
 
-const HoteisScreen = () => {
+const HoteisScreen = ({navigation}) => {
+  const criarHotel = () => {
+    navigation.navigate('CriarHotel');
+  }
   const renderItem = ({ item }) => (
     <View style={styles.row}>
       <View style={styles.column}>
@@ -28,27 +31,31 @@ const HoteisScreen = () => {
   );
 
   return (
+    <>
+    <TouchableOpacity onPress={criarHotel} style={styles.button}>
+      <Text style={styles.buttonText}>+</Text>
+    </TouchableOpacity>
     <View style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.column}>
-          <Text style={styles.title}>ID</Text>
+        <View style={styles.header}>
+          <View style={styles.column}>
+            <Text style={styles.title}>ID</Text>
+          </View>
+          <View style={styles.column}>
+            <Text style={styles.title}>Nome</Text>
+          </View>
+          <View style={styles.column}>
+            <Text style={styles.title}>Cidade</Text>
+          </View>
+          <View style={styles.column}>
+            <Text style={styles.title}>Estado</Text>
+          </View>
         </View>
-        <View style={styles.column}>
-          <Text style={styles.title}>Nome</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.title}>Cidade</Text>
-        </View>
-        <View style={styles.column}>
-          <Text style={styles.title}>Estado</Text>
-        </View>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id.toString()} />
       </View>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id.toString()}
-      />
-    </View>
+      </>
   );
 };
 
@@ -79,6 +86,19 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 16,
+  },
+  button: {
+    width: '15%',
+    backgroundColor: '#007AFF',
+    height: 50,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 18,
+    fontWeight: 'bold',
   },
 });
 
