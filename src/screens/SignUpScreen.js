@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, Button, StyleSheet } from 'react-native';
-import HomeScreen from '../screens/HomeScreen';
 
-const LoginScreen = ({ navigation }) => {
+const SignUpScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
+  const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = () => {
+  const handleSignUp = () => {
     // Lógica de login aqui
   }
   return (
@@ -21,6 +21,14 @@ const LoginScreen = ({ navigation }) => {
       </View>
       <View style={styles.inputContainer}>
         <TextInput
+          style={styles.input}
+          placeholder="CPF"
+          onChangeText={setCpf}
+          value={cpf}
+        />
+      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
           style={[styles.input, styles.passwordInput]}
           placeholder="Senha"
           secureTextEntry
@@ -28,15 +36,18 @@ const LoginScreen = ({ navigation }) => {
           value={password}
         />
       </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={[styles.input, styles.passwordInput]}
+          placeholder="Confirmar senha"
+          secureTextEntry
+          onChangeText={setPassword}
+          value={password}
+        />
+      </View>
       
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignUp')}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Login')}>
         <Text style={styles.buttonText}>Sign Up</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Principal')}>
-        <Text style={styles.buttonText}>Cliente</Text>
       </TouchableOpacity>
     </View>
   );
@@ -78,4 +89,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LoginScreen;
+export default SignUpScreen;
